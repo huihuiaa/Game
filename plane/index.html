@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+     *{
+     	margin: 0;
+     	padding: 0;
+
+     }
+      .box{
+      	width: 400px;
+      	height: 400px;
+      	border:1px solid #ccc;
+      }
+
+      #plane{
+      	position: absolute;
+      	left: 0;
+      	top: 0;
+      }
+      .pos{
+      	position: absolute;
+      	left: 100px;
+      	top: 0;
+      	display: none;
+      }
+
+	</style>
+</head>
+<body>
+
+
+<div class="box">
+	  <img src="images/2.png" alt="" id="pos0" class="pos">
+	  <img src="images/2.png" alt="" id="pos1" class="pos">
+	  <img src="images/2.png" alt="" id="pos2" class="pos">
+	  <img src="images/2.png" alt="" id="pos3" class="pos">
+	  <img src="images/2.png" alt="" id="pos4" class="pos">
+	  <img src="images/2.png" alt="" id="pos5" class="pos">
+	  <img src="images/1.gif" alt="" id="plane">
+
+</div>
+<script>
+
+document.onkeydown=function(e){
+	var e =window.event||e;
+	switch(e.keyCode){
+		case 37:
+		plane.style.left=Math.max(plane.offsetWidth-10,0)+'px';
+		break;
+		
+		case 38:
+		plane.style.top=Math.max(plane.offsetHeight-10,0)+'px';
+		break;
+		case 39:
+		plane.style.left=Math.min(plane.offsetLeft+10,234)+'px';
+		break;
+		case 40:
+		plane.style.top=Math.min(plane.offsetTop+10,220)+'px';
+		break;
+		case 32:
+		fun(plane.offsetLeft+(plane.offsetWidth/2-3),plane.offsetTop)
+		break;
+	}
+
+}
+var img =document.querySelectorAll('.pos');
+function fun(l,t){
+	for(var i=0;i<img.length-1;i++){
+		var pos =document.getElementById('pos'+i);
+		if(getComputedStyle(pos,null).display=='none'){
+			pos.style.display='block';
+			pos.style.left=l+'px';
+			pos.style.top=t+'px';
+			break;
+		}
+
+	}
+}
+setInterval(function(){
+   for(var i=0;i<6;i++){
+   	var pos =document.getElementById('pos'+i)
+   	pos.style.top=pos.offsetTop-10+'px';
+   	if(pos.offsetTop<-14){
+   		pos.style.display='none'
+   	}
+   }
+
+
+
+},50)
+</script>	
+</body>
+</html>

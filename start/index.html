@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	<script>
+	
+	function fn(min,max){
+		
+		var str = Math.floor(  Math.random()*(max-min+1)+min   );
+	
+		return str;
+	}
+	setInterval(()=>{
+		
+		//1》创建img节点
+		//2》img节点，添加到body中
+		
+		var oImg = document.createElement("img");
+		
+		oImg.src = "star.png";
+		
+		//oImg.setAttribute("src","star.png");
+		//oImg.style.width = "50px";
+		//oImg.style.height = "50px";
+		
+		oImg.setAttribute("style",`width:${fn(10,100)}px;position:absolute;left:${fn(50,1000)}px;top:${fn(50,1000)}px`);
+		
+		document.body.appendChild(oImg);
+		
+		
+		var imgs = document.getElementsByTagName("img");
+		for(var i=0;i<imgs.length;i++){
+			
+			imgs[i].onclick = function(){
+				
+				
+				this.parentNode.removeChild(this);
+				
+				
+			}
+		}
+	
+	
+	},1000);
+	
+	
+	
+	
+	
+	</script>
+	</body>
+</html>
